@@ -12,18 +12,26 @@ import bookingReducer from './bookingReducer';
 import patientSearchReducer from './patientSearchReducer';
 import patientDetailReducer from './patientDetailReducer';
 
+import requestMonitorReducer from './requestMonitorReducer';
+
 const rootReducer = combineReducers({
-  bookingTypes: bookingTypesReducer,
   user: userReducer,
-  companies: companyReducer,
-  currentCompany: currentCompanyReducer,
-  currentClinic: currentClinicReducer,
-  currentDoctor: currentDoctorReducer,
   toastr: toastrReducer,
-  roster: rosterReducer,
-  booking: bookingReducer,
-  patientSearch: patientSearchReducer,
-  patientDetail: patientDetailReducer
+  requestMonitor: requestMonitorReducer
 });
 
 export default rootReducer;
+
+/*
+bookingTypes: bookingTypesReducer,
+
+companies: companyReducer,
+currentCompany: currentCompanyReducer,
+currentClinic: currentClinicReducer,
+currentDoctor: currentDoctorReducer,
+toastr: toastrReducer,
+roster: rosterReducer,
+booking: bookingReducer,
+patientSearch: patientSearchReducer,
+patientDetail: patientDetailReducer,
+*/

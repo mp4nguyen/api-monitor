@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 import  * as types from '../actions/types';
 
 export default function socketIOMiddleware({dispatch}){
-  let apiUrl = 'http://medicalbookings.redimed.com.au:8080';//'https://192.168.36.56:3001'
+  let apiUrl = 'http://medicalbookings.redimed.com.au:6500';//'https://192.168.36.56:3001'
   let socket = io(apiUrl);
 
   socket.on('connect', function () {
@@ -13,9 +13,30 @@ export default function socketIOMiddleware({dispatch}){
 
   socket.on('initialDataForWeb',(data)=>{
     console.log('initialDataForWeb = ',data);
-    data.forEach((value,key)=>{
-      console.log("key:",key,"value:",value);
-    },data);
+    const fetchDataFromServer = {type:types.FETCH_REQUEST_DATA_FROM_SERVER,data};
+    dispatch(fetchDataFromServer);
+  });
+
+  socket.on('sendReqBeginToWeb',(data)=>{
+    console.log('sendReqBeginToWeb = ',data);
+    const fetchDataFromServer = {type:types.ADD_REQUEST_DATA_FROM_SERVER,data};
+    dispatch(fetchDataFromServer);
+  });
+
+  socket.on('sendReqEndToWeb',(data)=>{
+    console.log('sendReqEndToWeb = ',data);
+    const fetchDataFromServer = {type:types.END_REQUEST_DATA_FROM_SERVER,data};
+    dispatch(fetchDataFromServer);
+  });
+
+  socket.on('sendReqUpdateToWeb',(data)=>{
+    console.log('sendReqEndToWeb = ',data);
+    const fetchDataFromServer = {type:types.UPDATE_REQUEST_DATA_FROM_SERVER,data};
+    dispatch(fetchDataFromServer);
+  });
+
+  socket.on('test',(data)=>{
+    console.log('receive test from server = ',data);
   });
 
   socket.on('welcome', function (data) {
